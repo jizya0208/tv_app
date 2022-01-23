@@ -1,6 +1,9 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+// Headコンポーネントはメタデータを簡単に設定するためのコンポーネント
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+// Linkコンポーネントは(SSR)を簡単に実装するためのコンポーネント
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -17,7 +20,7 @@ export default function Home() {
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
+          Get started by editing{" "}
           <code className={styles.code}>pages/index.js</code>
         </p>
 
@@ -40,6 +43,12 @@ export default function Home() {
             <p>Discover and deploy boilerplate example Next.js projects.</p>
           </a>
 
+          <h2 className={styles.heading}>(child)> 
+            About Page
+            <Link href="/about">
+              <a>About Page! Click Me!</a>
+            </Link>
+          </h2>
           <a
             href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
             className={styles.card}
@@ -58,12 +67,12 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>
     </div>
-  )
+  );
 }

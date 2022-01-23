@@ -1,4 +1,5 @@
 import { AppProps } from "next/app";
+// 全てのページ共通のスタイル
 import "../styles/globals.css";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
