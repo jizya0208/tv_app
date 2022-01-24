@@ -2,10 +2,22 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import utilStyles from "../styles/utils.module.css";
 // Linkコンポーネントは(SSR)を簡単に実装するためのコンポーネント
 import Link from "next/link";
+// build時にfetch(getStaticProps)する
+import { getSortedPostsData } from "../lib/posts";
 
-export default function Home() {
+export async function getStaticProps() {
+  const allPostsData = getSortedPostsData();
+  return {
+    props: {
+      allPostsData,
+    },
+  };
+}
+
+export default function Home({ allPostsData }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -43,8 +55,8 @@ export default function Home() {
             <p>Discover and deploy boilerplate example Next.js projects.</p>
           </a>
 
-          <h2 className={styles.heading}>(child)> 
-            About Page
+          <h2 className={styles.heading}>
+            (child) About Page
             <Link href="/about">
               <a>About Page! Click Me!</a>
             </Link>
@@ -59,6 +71,21 @@ export default function Home() {
             </p>
           </a>
         </div>
+        {/* Add this <section> tag below the existing <section> tag */}
+        <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+          <h2 className={utilStyles.headingLg}>Blog</h2>
+          <ul className={utilStyles.list}>
+            {allPostsData.map(({ id, date, title }) => (
+              <li className={utilStyles.listItem} key={id}>
+                {title}
+                <br />
+                {id}
+                <br />
+                {date}
+              </li>
+            ))}
+          </ul>
+        </section>
       </main>
 
       <footer className={styles.footer}>

@@ -5,7 +5,7 @@
 
 import Link from "next/link";
 import Head from "next/head";
-import Layout from "../components/layout.tsx";
+import Layout from "../components/layout.js";
 
 function Home() {
   return (
